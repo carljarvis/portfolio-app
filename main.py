@@ -22,7 +22,7 @@ content2 = """Below you can find of the apps I have built in Python. Feel free t
 
 st.write(content2)
 
-col3, col4 = st.columns(2)
+col3, empty_col, col4 = st.columns([1.5, 0.5, 1.5])
 
 df = pd.read_csv('data.csv', sep=';')
 with col3:
@@ -30,8 +30,14 @@ with col3:
     for index, row in df[:10].iterrows():
         # if index % 2== 0:
         st.header(row['title'])
+        st.write(row['description'])
+        st.image('images/{}'.format(row['image']))
+        st.write('[Source Code]({})'.format(row['url']))
 
 with col4:
     for index, row in df[10:].iterrows():
         # if index % 2 == 1:
         st.header(row['title'])
+        st.write(row['description'])
+        st.image('images/{}'.format(row['image']))
+        st.write('[Source Code]({})'.format(row['url']))
